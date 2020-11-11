@@ -17,7 +17,7 @@
 			</div>
 			<div class="col-lg-6">
 				<div class="form-group mb-3">
-					<button class="btn btn-warning btn-sm w-100" data-evocomments-login>Оставить отзыв</button>	
+					<button class="btn btn-warning w-100" data-evocomments-login>Оставить отзыв</button>	
 				</div>
 			</div>
 		</div>
