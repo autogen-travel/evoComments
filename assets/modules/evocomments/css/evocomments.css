@@ -1,0 +1,215 @@
+.ec_comment {
+	margin: 2px 0;
+}
+
+.ec_main_comment {
+    padding: 20px;
+    background: #ebf5ff;
+    border-radius: 6px;
+}
+
+.ec_child_comment {
+    padding: 20px;
+    background: #f7f6f4;
+    border-radius: 6px;
+}
+
+.ec_avatar {
+    border-radius: 5px;
+    width: 50px;
+    height: 50px;
+}
+
+.ec_child_comment .ec_avatar {
+    width: 40px;
+    height: 40px; 
+}
+
+.ec_author {
+	font-size: 16px;
+    color: #000;
+}
+
+.ec_date {
+	font-size: 12px;
+	color: #7b7b7b;
+}
+
+.ec_text {
+	display: block;
+    word-wrap: break-word;
+    line-height: 1.5;
+    font-size: 14px;
+    color: #333;
+}
+
+.ec_content {
+    padding-left:65px;
+}
+.ec_child_comment .ec_content {
+    padding-left:55px;
+}
+
+.ec_childWrapper {
+    padding-left: 70px;
+}
+
+.ec_reply_wrapper {
+
+}
+
+.ec_reply_btn {
+	font-size: 12px;
+}
+
+.ec_reply_name {
+    text-decoration: underline;
+    color: #3480cb;
+}
+.ec_reply_name:hover {
+    text-decoration: none;
+}
+
+
+[data-evocomments-provider] {
+    display: inline-block!important;
+    width: 30px!important;
+    height: 30px!important;
+    border-radius: 4px!important;
+    -webkit-border-radius: 4px!important;
+    -moz-border-radius: 4px!important;
+    margin: 0 6px 10px 0!important;
+}
+[data-evocomments-provider]::before {
+    content: '';
+    display: inline-block!important;
+    vertical-align: inherit!important;
+    width: 30px!important;
+    height: 30px!important;
+    border-radius: 4px!important;
+    -webkit-border-radius: 4px!important;
+    -moz-border-radius: 4px!important;
+    background: url(../img/prov.png) 0 0 transparent no-repeat!important;
+}
+
+[data-evocomments-provider="vkontakte"]::before {
+    background-position: 0 0!important;
+    background-color: #41658b!important;
+}
+
+[data-evocomments-provider="facebook"]::before {
+    background-position: -90px 0!important;
+    background-color: #3c5b9b!important;
+}
+
+[data-evocomments-provider="mailru"]::before {
+    background-position: -60px 0!important;
+    background-color: #3d6cb0!important;
+}
+
+[data-evocomments-provider="yandex"]::before {
+    background-position: -240px 0!important;
+    background-color: #ffdb4c!important;
+}
+[data-evocomments-provider="google"]::before {
+    background-position: -150px 0!important;
+    background-color: #e2e2e2!important;
+}
+
+
+
+.ec_field-header {
+    text-transform: uppercase;
+    margin-bottom: 10px;
+    color: #8c8c8c;
+    font-size: 12px;
+}
+
+
+.ec_profile {
+    position: relative;
+    font-size: 14px;
+    line-height: 24px;
+    letter-spacing: .5px;
+    
+    display: flex;
+    justify-content: flex-end;
+    margin-bottom: 10px;
+}
+
+.ec_profile-wrapper {
+   display: flex;
+   cursor: pointer; 
+}
+
+.ec_profile .ec_profile-wrapper::after {
+    content: '';
+    width: 24px;
+    height: 24px;
+    -webkit-box-flex: 0;
+    -webkit-flex: 0 0 24px;
+    -ms-flex: 0 0 24px;
+    flex: 0 0 24px;
+    background-color: #333;
+    -webkit-mask: url(../img/arrow_down.svg) no-repeat 50% 50%;
+    -webkit-mask-size: 100%;
+}
+
+.ec_profile-wrapper:hover .ec_profile-dropdown {
+    display: block;
+}
+
+.ec_profile-dropdown {
+    display: none;
+    position: absolute;
+    top: 100%;
+    right: 0;
+    width: auto;
+    z-index: 99999;
+    height: auto;
+    background: #fff;
+    border-radius: 2px;
+    overflow: hidden;
+    border: 1px solid #ccc;
+}
+
+.ec_profile-dropdown ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    text-align: left;
+}
+
+.ec_profile-dropdown ul li {
+    padding: 5px 10px;
+}
+.ec_profile-dropdown ul li:hover {
+    background: #ececec;
+    padding: 5px 10px;
+}
+
+.ec_moreBtn {
+    display: none;
+}
+
+@media (max-width:991px) {
+    .ec_childWrapper {
+        padding-left: 0;
+    }
+
+    .ec_content, .ec_child_comment .ec_content {
+        padding-left:0;
+    }
+
+    [data-evocomment-submit] {
+        width: 100%;
+    }
+}
+
+.ec_comment_deleted {
+    opacity: 0.5;
+}
+
+.ec_comment_deleted .ec_reply_btn, .ec_comment_deleted .ec_author, .ec_comment_deleted .ec_avatar, .ec_comment_deleted .ec_date, .ec_comment_deleted .ec_reply_name {
+    display: none;
+}
