@@ -36,6 +36,7 @@
             <div style="text-align:right;margin-bottom: 1rem;">
               <select name="statusSelect" class="form-control" style="width: auto;">
                 <option value="0">Опубликованные</option>
+                <option value="1">На модерации</option>
                 <option value="9">Удаленные</option>
               </select>
             </div>
@@ -64,6 +65,15 @@
                  <tr>
                    <th style="width: 10rem">Загружать по:</th>
                    <td><input type="number" name="display" value="[+display+]"></td>
+                 </tr>
+                 <tr>
+                   <th style="width: 10rem">Премодерация:</th>
+                   <td>
+                    <select name="premoderate">
+                      <option value="0" [+premoderate.select.0+]>Нет</option>
+                      <option value="1" [+premoderate.select.1+]>Да</option>
+                    </select>
+                  </td>
                  </tr>
                  </tbody>
              </table>
