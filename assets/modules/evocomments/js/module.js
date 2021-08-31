@@ -30,7 +30,7 @@ const app = {};
         app.Ajax('changeStatus', {status:0, id:c_id}, function(res){
           if(res.status && res.status=='ok') {
             $(e.target).closest('[data-evocomments-id]').removeClass('status-9');
-            $(e.target).closest('[data-evocomments-id]').addClass('status-1');
+            $(e.target).closest('[data-evocomments-id]').addClass('status-0');
           }
         }); 
       },
@@ -48,8 +48,16 @@ const app = {};
         let c_id = $(e.target).closest('[data-evocomments-id]').data('evocomments-id');
         app.Ajax('changeStatus', {status:9, id:c_id}, function(res){
           if(res.status && res.status=='ok') {
-            $(e.target).closest('[data-evocomments-id]').removeClass('status-1');
+            $(e.target).closest('[data-evocomments-id]').removeClass('status-0');
             $(e.target).closest('[data-evocomments-id]').addClass('status-9');
+          }
+        }); 
+      },
+      publishComment: function(e){
+        let c_id = $(e.target).closest('[data-evocomments-id]').data('evocomments-id');
+        app.Ajax('changeStatus', {status:0, id:c_id}, function(res){
+          if(res.status && res.status=='ok') {
+            $(e.target).closest('[data-evocomments-id]').remove();
           }
         }); 
       }
@@ -105,5 +113,3 @@ const app = {};
  	app.Actions.init();
   app.statusSelect.init();
 })(jQuery);
-
-	
