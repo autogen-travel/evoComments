@@ -55,7 +55,7 @@ switch($action) {
 	case 'loadmore':
 		$offset = trim($_POST['offset']);
 		$offset = $offset + $evocomments->config['display'];
-		$result['result'] = $evocomments->render(trim($_POST['page_id']), $offset);
+		$result['result'] = $evocomments->render(['docid'=>trim($_POST['page_id']), 'display'=>$offset, 'noForm'=>$_POST['noForm']]);
 		$result['status'] = 'ok';
 	break;
 
