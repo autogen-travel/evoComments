@@ -189,6 +189,12 @@ class EvoComments
             $comment_id = $main_id;
         }
 
+        $this->sendEmail(
+            'Новый комментарий на сайте '.$this->evo->config['site_name'],
+            $this->evo->config['emailsender'],
+            'На странице <a href="'.$page_url.'">'.$page_url.'</a> опубликован новый комментарий. <br/>Текст комментария:<br/>'.$insert['comment']
+        );  
+
         $comment_arr = $this->getCommentById($comment_id);
         $insert['html'] = $parent_id==0 ? $this->evo->parseText($this->commentTpl, $comment_arr, '[+', '+]') : $this->evo->parseText($this->commentChildTpl, $comment_arr, '[+', '+]');
 
