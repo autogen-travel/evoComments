@@ -89,9 +89,10 @@ class EvoComments
 
 
 
-    public function render($page_id=false, $display=false) {
-        $display = !$display ? $this->config['display'] : $display;
-        $page_id = !$page_id ? $this->evo->documentIdentifier : $page_id;
+    public function render($params=array()) {
+        $display = isset($params['display']) ? $params['display'] : $this->config['display'];
+        $page_id = isset($params['docid']) ? $params['docid'] : $this->evo->documentIdentifier;
+
         $total_comments = $this->getTotalCount($page_id);
         $comments = $this->getComments($page_id, $display);
         
@@ -135,16 +136,20 @@ class EvoComments
 
         
         //Проверка на авторизацию
-        $user_profile = $this->getUserProfile();
-        if(!$user_profile) {
-            $form = '<div data-evocomments-form><div data-evocomments-auth>'.$this->authBlockTpl.'</div></div>';
+        if(isset($params['noForm']) && $params['noForm']=='1') {
             $profile = '';
+            $form = '';
         } else {
-            $avatar = $user_profile['avatar'];
-            $profile = $this->evo->parseText($this->profileDropdownTpl, $user_profile, '[+', '+]'); 
-            $form = '<div data-evocomments-form>'.$this->evo->parseText($this->formTpl, ['avatar'=>$avatar], '[+', '+]').'</div>';
+            $user_profile = $this->getUserProfile();
+            if(!$user_profile) {
+                $form = '<div data-evocomments-form><div data-evocomments-auth>'.$this->authBlockTpl.'</div></div>';
+                $profile = '';
+            } else {
+                $avatar = $user_profile['avatar'];
+                $profile = $this->evo->parseText($this->profileDropdownTpl, $user_profile, '[+', '+]'); 
+                $form = '<div data-evocomments-form>'.$this->evo->parseText($this->formTpl, ['avatar'=>$avatar], '[+', '+]').'</div>';
+            }
         }
-
         
         $moreBtn = $total_comments > $display ? 'style="display:block;"' : '';
         
@@ -233,7 +238,12 @@ class EvoComments
 
     protected function getComments($docid, $display) {
         $comments = [];
-        $q = $this->db->select('*', '[+prefix+]evocomments', 'status!=1 AND document='.$docid, 'main_id DESC, parent_id ASC, id ASC', $display);
+        if($docid=='all') {
+            $q = $this->db->select('*', '[+prefix+]evocomments', 'status!=1', 'main_id DESC, parent_id ASC, id ASC', $display);
+        } else {
+            $q = $this->db->select('*', '[+prefix+]evocomments', 'status!=1 AND document='.$docid, 'main_id DESC, parent_id ASC, id ASC', $display);
+        }
+        
         if($this->db->getRecordCount($q)==0) return [];
         while($row = $this->db->getRow($q)) {
             $row['date'] = $this->showDate(strtotime($row['updated_at']));
@@ -243,7 +253,11 @@ class EvoComments
     }
 
     protected function getTotalCount($docid){
-        $q = $this->db->select('id', '[+prefix+]evocomments', 'document='.$docid);
+        if($docid=='all') {
+            $q = $this->db->select('id', '[+prefix+]evocomments');
+        } else {
+            $q = $this->db->select('id', '[+prefix+]evocomments', 'document='.$docid);
+        }
         return $this->db->getRecordCount($q);
     }
 
