@@ -167,7 +167,7 @@ class EvoComments
         $insert['user'] = $user_profile['user_id'];
         $insert['created_at'] = date('Y-m-d H:i:s');
         $insert['ip'] = APIHelpers::getUserIP();
-        $insert['status'] = 0;
+        $insert['status'] = $this->config['premoderate'];
         if(isset($parent_id) && is_numeric($parent_id) && $parent_id>0) {
             $sql = $this->db->select('main_id, user', '[+prefix+]evocomments', 'id='.$parent_id, '', 1);
             $parent_comment = $this->db->getRow($sql);
@@ -227,7 +227,7 @@ class EvoComments
 
     protected function getComments($docid, $display) {
         $comments = [];
-        $q = $this->db->select('*', '[+prefix+]evocomments', 'document='.$docid, 'main_id DESC, parent_id ASC, id ASC', $display);
+        $q = $this->db->select('*', '[+prefix+]evocomments', 'status!=1 AND document='.$docid, 'main_id DESC, parent_id ASC, id ASC', $display);
         if($this->db->getRecordCount($q)==0) return [];
         while($row = $this->db->getRow($q)) {
             $row['date'] = $this->showDate(strtotime($row['updated_at']));
