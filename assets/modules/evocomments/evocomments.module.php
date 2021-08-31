@@ -46,6 +46,7 @@ if ($modx->db->getRecordCount($modx->db->query('SHOW TABLES FROM ' . $modx->db->
         );';
 
         $sql[] = 'INSERT INTO ' . $modx->getFullTableName('evocomments_config') . ' VALUES (NULL, "display", "20");';
+        $sql[] = 'INSERT INTO ' . $modx->getFullTableName('evocomments_config') . ' VALUES (NULL, "premoderate", "0");';
         $sql[] = 'INSERT INTO ' . $modx->getFullTableName('evocomments_config') . ' VALUES (NULL, "outerTpl", "@FILE:/assets/modules/evocomments/templates/outerTpl.tpl");';
         $sql[] = 'INSERT INTO ' . $modx->getFullTableName('evocomments_config') . ' VALUES (NULL, "formTpl", "@FILE:/assets/modules/evocomments/templates/formTpl.tpl");';
         $sql[] = 'INSERT INTO ' . $modx->getFullTableName('evocomments_config') . ' VALUES (NULL, "authBlockTpl", "@FILE:/assets/modules/evocomments/templates/authBlockTpl.tpl");';
@@ -67,6 +68,7 @@ $ph['module_title'] = 'Evo Comments';
 $ph['module_close'] = 'Закрыть';
 $ph['module_url'] = 'index.php?a=112&id='.$_GET['id'];
 $ph = array_merge($ph, $evocomments->config);
+$ph['premoderate.select.'.$ph['premoderate']] = 'selected';
 $mainTpl = $modx->getTpl('@FILE:assets/modules/evocomments/templates/module/main.tpl.php');
 
 $ph['commentsList'] = $evocomments->getCommentsTable();
