@@ -11,12 +11,12 @@
  */
 
 
-
 include_once(MODX_BASE_PATH . 'assets/modules/evocomments/evocomments.class.php');
 $evocomments = new EvoComments();
 
-$render = $evocomments->render();
-
+$render = $evocomments->render($params);
+$docid = isset($params['docid']) ? $params['docid'] : $modx->documentIdentifier;
+$noform = isset($params['noForm']) ? 'data-evocomments-noForm="1"' : '';
 $modx->regClientScript('assets/modules/evocomments/js/evocomments.js'); 
 $modx->regClientCSS('<link rel="stylesheet" href="assets/modules/evocomments/css/evocomments.css">');
-return '<div id="evoComments" data-evocomments-page-id="'.$modx->documentIdentifier.'">'.$render.'</div>';
+return '<div id="evoComments" data-evocomments-page-id="'.$docid.'" '.$noform.'>'.$render.'</div>';
