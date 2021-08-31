@@ -124,11 +124,12 @@ $(function() {
 		e.preventDefault();
 		var offset = $(document).find('[data-evocomments-comment-id]').length;
 		var page_id = $(document).find('[data-evocomments-page-id]').data('evocomments-page-id');
+		var noForm = $(document).find('[data-evocomments-noform]').data('evocomments-noform') || false;
 		$.ajax({
 			url: 'assets/modules/evocomments/ajax.php',
 			type: 'post',
 			dataType: 'json',
-			data: {action: 'loadmore', offset: offset, page_id: page_id},
+			data: {action: 'loadmore', offset: offset, page_id: page_id, noForm:noForm},
 			beforeSend: function(){
 				$('.ec_moreBtn').fadeTo(300, .5);
 			}
