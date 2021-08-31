@@ -12,7 +12,7 @@
 
 
 include_once(MODX_BASE_PATH . 'assets/modules/evocomments/evocomments.class.php');
-$evocomments = new EvoComments();
+$evocomments = new EvoComments($params);
 
 $render = $evocomments->render($params);
 $docid = isset($params['docid']) ? $params['docid'] : $modx->documentIdentifier;
