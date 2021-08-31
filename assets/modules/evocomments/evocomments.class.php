@@ -6,18 +6,18 @@ class EvoComments
     public $config;
     public $session;
 
-    public function __construct() {
+    public function __construct($params=array()) {
         $this->evo = evolutionCMS();
         $this->db = $this->evo->db;
         $this->basePath = MODX_BASE_PATH . 'assets/modules/evocomments/';
         $this->getSession();
         $this->getConfig();
-        $this->commentTpl = $this->evo->getTpl($this->config['commentTpl']);
-        $this->commentChildTpl = $this->evo->getTpl($this->config['commentChildTpl']);
-        $this->outerTpl = $this->evo->getTpl($this->config['outerTpl']);
-        $this->formTpl = $this->evo->getTpl($this->config['formTpl']);
-        $this->authBlockTpl = $this->evo->getTpl($this->config['authBlockTpl']);
-        $this->profileDropdownTpl = $this->evo->getTpl($this->config['profileDropdownTpl']);
+        $this->commentTpl = isset($params['commentTpl']) ? $this->evo->getTpl($params['commentTpl']) : $this->evo->getTpl($this->config['commentTpl']);
+        $this->commentChildTpl = isset($params['commentChildTpl']) ? $this->evo->getTpl($params['commentChildTpl']) : $this->evo->getTpl($this->config['commentChildTpl']);
+        $this->outerTpl = isset($params['outerTpl']) ? $this->evo->getTpl($params['outerTpl']) : $this->evo->getTpl($this->config['outerTpl']);
+        $this->formTpl = isset($params['formTpl']) ? $this->evo->getTpl($params['formTpl']) : $this->evo->getTpl($this->config['formTpl']);
+        $this->authBlockTpl = isset($params['authBlockTpl']) ? $this->evo->getTpl($params['authBlockTpl']) : $this->evo->getTpl($this->config['authBlockTpl']);
+        $this->profileDropdownTpl = isset($params['profileDropdownTpl']) ? $this->evo->getTpl($params['profileDropdownTpl']) : $this->evo->getTpl($this->config['profileDropdownTpl']);
     }
 
 
