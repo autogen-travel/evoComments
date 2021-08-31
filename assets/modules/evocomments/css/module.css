@@ -29,9 +29,11 @@ body#commentsModule {
     text-decoration: line-through;
     opacity: .5;
 }
-.comment_row.status-9 [data-evocomments-action="restoreComment"], .comment_row.status-9 [data-evocomments-action="destroyComment"]{
-    display: inline-block;
-}
-.comment_row.status-9 [data-evocomments-action="deleteComment"]{
+
+.comment_row.status-9 [data-evocomments-action="deleteComment"], [data-evocomments-action="publishComment"]{
     display: none;
+}
+
+.comment_row.status-9 [data-evocomments-action="restoreComment"], .comment_row.status-9 [data-evocomments-action="destroyComment"], .comment_row.status-1 [data-evocomments-action="publishComment"]{
+    display: inline-block;
 }
