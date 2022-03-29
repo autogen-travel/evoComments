@@ -19,7 +19,7 @@ $(function() {
 			}
     	});
 
-		var url = 'https://evocomments.online/oauth?provider='+provider;
+		var url = 'https://evocomments.ru/oauth?provider='+provider;
 		var t = (screen.width - 800) / 2,
             i = (screen.height - 600) / 2,
             c = url;
